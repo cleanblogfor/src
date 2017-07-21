@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html class="no-js" itemscope="" itemtype="http://schema.org/WebPage" b:css="false" b:defaultwidgetversion="2" b:layoutsVersion="3" b:responsive="true" b:templateUrl="fancy.xml">&lt;!-- <b:section id="default" showaddelement="no"><b:widget id="Blog1" locked="true" type="Blog"><b:includable id="main"> -->
+&lt;head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <b:include name="MetaTags"/>
+  <script type="text/javascript">
+    (function(a){a.className=a.className.replace(/\bno-js\b/,"js")})(document.documentElement);
+    function callCSS(url,id) {
+      var xhttp;
+      if (window.XMLHttpRequest) {
+        xhttp = new XMLHttpRequest();
+      } else {
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 &amp;&amp; xhttp.status == 200) {
+          var head = document.head || document.getElementsByTagName("head")[0];
+          var style = document.createElement("style");
+          style.type = "text/css";
+          style.id = id;
+          if (style.styleSheet) {
+            style.styleSheet.cssText = xhttp.responseText;
+          } else {
+            style.appendChild(document.createTextNode(xhttp.responseText));
+          }
+          head.appendChild(style);
+        }
+      }
+      xhttp.open("GET", url, true);
+      xhttp.send();
+    }
+    callCSS("https://cleanblogfor.github.io/src/bootstrap.css","bootstrap");
+    callCSS("https://cleanblogfor.github.io/src/style.min.css","clean-blog");
+    callCSS("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800,300italic,400italic,600italic,700italic,800italic|Lora:400,700,400italic,700italic","google-fonts");
+    function loadPrettify() {
+      "use strict";
+      var js = window.document.createElement("script");
+      var ref = window.document.getElementsByTagName("head")[0];
+      js.src = "https://msx.github.io/src/google-prettify.js";
+      js.type = "text/javascript";
+      js.async = true;
+      ref.appendChild(js, ref);
+      callCSS("https://msx.github.io/src/google-prettify.css","google-prettify");
+      function addLoadEvent(func) {
+        var oldonload = window.onload;
+        if (typeof window.onload != "function") {
+          window.onload = func;
+        } else {
+          window.onload = function() {
+            if (oldonload) {
+              oldonload();
+            }
+            func();
+          }
+        }
+      }
+      addLoadEvent(function() {
+        prettyPrint();
+      });
+    }
+  </script>
+  <noscript>
+    <link rel="stylesheet" href="https://cleanblogfor.github.io/src/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cleanblogfor.github.io/src/style.min.css" type="text/css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800,300italic,400italic,600italic,700italic,800italic|Lora:400,700,400italic,700italic" type="text/css"/>
+  </noscript>
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+&lt;/head>
+&lt;body itemscope="" itemtype="http://schema.org/Blog">
+  <nav class="navbar navbar-default navbar-custom navbar-static-top">
+    <div class="container">
+      <div class="navbar-header page-scroll" itemscope="" itemtype="http://schema.org/WPHeader">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="icon-bar"/><i class="icon-bar"/><i class="icon-bar"/>
+        </button>
+        <a class="navbar-brand" expr:href="data:blog.homepageUrl" itemprop="url"><span itemprop="name headline"><data:blog.title/></span></a>
+        <i itemprop="description" expr:content="data:description"/>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-navbar">
+        <ul class="nav navbar-nav navbar-right" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+          <li><a href="/p/about.html" itemprop="url"><span itemprop="name">Tentang</span></a></li>
+          <li><a href="/p/lists.html" itemprop="url"><span itemprop="name">Daftar Isi</span></a></li>
+          <li><a href="/p/contact.html" itemprop="url"><span itemprop="name">Kontak</span></a></li>
+          <li><a href="#search-form" data-toggle="collapse">Cari</a></li>
+        </ul>
+        <form id="search-form" class="navbar-form navbar-left collapse" method="get" expr:action="data:blog.searchUrl" itemprop="potentialAction" itemscope="" itemtype="https://schema.org/SearchAction">
+          <i itemprop="target" expr:content="data:blog.searchUrl + &quot;?q={q}&quot;"/>
+          <input itemprop="query-input" name="q" type="search" class="form-control" autocomplete="off" placeholder="Search..." value=""/>
+          <button type="submit"><b/></button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  &lt;header class="intro-header" style=" background-image: url(
+    <b:if cond="data:view.isSingleItem">
+      <b:loop values="data:posts" var="post">
+        <b:if cond="data:post.thumbnailUrl">
+          <b:eval expr="resizeImage(data:post.thumbnailUrl, 1900, &quot;1900:600&quot;)"/>
+        <b:else/>
+          https://source.unsplash.com/1900x600
+        </b:if>
+      </b:loop>
+      <b:else/>
+      https://source.unsplash.com/1900x600
+    </b:if>)">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <b:if cond="data:view.isHomepage">
+            <div class="page-heading">
+              <h1><data:blog.title/></h1>
+              <hr class="small"/>
+              <span class="subheading"><data:description/></span>
+            </div>
+          </b:if>
+          <b:if cond="data:view.search and !data:view.search.label and !data:view.search.query">
+            <div class="page-heading">
+              <h1><data:blog.title/></h1>
+              <hr class="small"/>
+              <span class="subheading"><data:description/></span>
+            </div>
+          </b:if>
+          <b:if cond="data:view.isPost">
+            <div class="post-heading">
+              <h1><data:blog.pageName/></h1>
+              <b:loop values="data:posts" var="post">
+              <h2 class="subheading">
+                <b:if cond="data:blog.metaDescription">
+                  <data:blog.metaDescription/>
+                  <b:else/>
+                  <b:eval expr="snippet(data:post.body, { length: 80, links: false, linebreaks: false, ellipsis: true })"/>
+                </b:if>
+              </h2>
+              <span class="meta text-capitalize">
+                <time expr:datetime="data:post.date.iso8601">
+                  <b:eval expr="data:post.date format &quot;EEEE, dd MMMM YYYY&quot;"/>
+                </time>
+                &amp;nbsp;&amp;mdash;
+                <b:if cond="data:post.labels">
+                  <b:loop index="i" values="data:post.labels" var="label">
+                    <a b:whitespace="remove" class="post-label" expr:href="params(data:label.url, { max-results: 4 })"><data:label.name/></a><b:if cond="data:i != (data:post.labels.size - 1)">,</b:if>
+                  </b:loop>
+                <b:else/>
+                  Unlabelled
+                </b:if>
+              </span>
+              </b:loop>
+            </div>
+          </b:if>
+          <b:if cond="data:view.isPage">
+            <div class="page-heading">
+              <h1><data:blog.pageName/></h1>
+              <hr class="small"/>
+              <span class="subheading"><data:blog.title/></span>
+            </div>
+          </b:if>
+          <b:if cond="data:view.search.label">
+            <div class="page-heading">
+              <h1>Label: <data:blog.pageName/></h1>
+              <hr class="small"/>
+              <span class="subheading"><data:blog.title/></span>
+            </div>
+          </b:if>
+          <b:if cond="data:view.search.query">
+            <div class="post-heading">
+              <h1>Hasil pencarian &#8220;<data:blog.searchQuery/>&#8221;</h1>
+              <hr class="small"/>
+              <span class="subheading"><data:blog.title/></span>
+            </div>
+          </b:if>
+          <b:if cond="data:view.isArchive">
+            <div class="post-heading">
+              <h1>Post <data:blog.pageName/></h1>
+              <hr class="small"/>
+              <span class="subheading"><data:blog.title/></span>
+            </div>
+          </b:if>
+          <b:if cond="data:view.isError">
+            <div class="page-heading">
+              <h1>404!</h1>
+              <hr class="small"/>
+              <span class="subheading"><data:blog.title/></span>
+            </div>
+          </b:if>
+        </div>
+      </div>
+    </div>
+    <div class="bayangan"/>
+  &lt;/header>
+  <main class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+        <b:loop values="data:posts" var="post">
+          <i itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <i itemprop="mainEntityOfPage" expr:content="data:post.url"/>
+            <i itemprop="name headline" expr:content="data:post.title"/>
+            <b:if cond="data:view.isMultipleItems">
+              <i name="description" expr:content="snippet(data:post.body, { length: 550, links: false, linebreaks: false, ellipsis: true })"/>
+              <b:else/>
+              <b:if cond="data:blog.metaDescription">
+                <i itemprop="description" expr:content="data:blog.metaDescription"/>
+                <b:else/>
+                <i name="description" expr:content="snippet(data:post.body, { length: 150, links: false, linebreaks: false, ellipsis: true })"/>
+              </b:if>
+            </b:if>
+            <i itemprop="datePublished" expr:content="data:post.date.iso8601"/>
+            <i itemprop="dateModified" expr:content="data:post.lastUpdated.iso8601"/>
+            <i itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+              <b:if cond="data:post.author.profileUrl">
+                <i itemprop="url" expr:content="data:post.author.profileUrl"/>
+                <i itemprop="name" expr:content="data:post.author.name"/>
+                <b:else/>
+                <i itemprop="name" expr:content="data:post.author.name"/>
+              </b:if>
+            </i>
+            <i itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+              <i itemprop="name" content="Blogger"></i>
+              <i itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject">
+                <i itemprop="url" content="https://lh3.googleusercontent.com/ULB6iBuCeTVvSjjjU1A-O8e9ZpVba6uvyhtiWRti_rBAs9yMYOFBujxriJRZ-A=h60"></i>
+                <i itemprop="width" content="206"></i>
+                <i itemprop="height" content="60"></i>
+              </i>
+            </i>
+            <i itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+              <b:if cond="data:post.featuredImage">
+                <b:if cond="data:post.featuredImage.isYoutube">
+                  <i itemprop="url" expr:content="resizeImage(data:post.featuredImage.isYoutube, 640)"/>
+                <b:else/>
+                  <i itemprop="url" expr:content="resizeImage(data:post.featuredImage, 640)"/>
+                </b:if>
+              <b:else/>
+                <i itemprop="url" content="https://source.unsplash.com/640x480"/>
+              </b:if>
+              <i itemprop="width" content="640"></i>
+              <i itemprop="height" content="480"></i>
+              <i itemprop="caption" expr:content="data:post.title"></i>
+            </i>
+          </i>
+        </b:loop>
+
+        <noscript>
+          <div class="alert alert-danger">
+            Mohon aktifkan <strong>Javascript</strong> di browser Anda untuk mendapatkan pengalaman terbaik ketika mengunjungi situs ini.
+          </div>
+        </noscript>
+
+        <b:if cond="not data:posts.any">
+          <div class="alert alert-danger">Tak ada apapun di sini!</div>
+        </b:if>
+
+        <b:if cond="data:view.isError">
+          <h2>Ups! Laman tidak ditemukan.</h2>
+          <p>Maaf, laman yang anda cari tidak ditemukan di blog ini. Mohon cari kembali apa yang anda tuju, atau kunjungi <a expr:href="data:blog.homepageUrl">Beranda</a> kembali.</p>
+        </b:if>
+
+        <b:if cond="data:view.isPost">
+          <b:loop values="data:posts" var="post">
+            <data:post.body/>
+            <div class="post-share clearfix">
+              <h3>Share This:</h3>
+              <ul class="list-inline">
+                <script type="text/javascript">
+                  var text = "<data:post.title/>";
+                  var url = "<data:post.url/>";
+                  var isMobile = {
+                    Android: function() {
+                      return navigator.userAgent.match(/Android/i);
+                    },
+                    BlackBerry: function() {
+                      return navigator.userAgent.match(/BlackBerry/i);
+                    },
+                    iOS: function() {
+                      return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+                    },
+                    Opera: function() {
+                      return navigator.userAgent.match(/Opera Mini/i);
+                    },
+                    Windows: function() {
+                      return navigator.userAgent.match(/IEMobile/i);
+                    },
+                    any: function() {
+                      return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+                    }
+                  };
+                  if (isMobile.any()) {
+                    var message = encodeURIComponent(text) + " - " + encodeURIComponent(url);
+                    document.write("&lt;li class=\"sh-wa\">&lt;a href=\"whatsapp://send?text=" + message + "\">&lt;i>&lt;/i>&lt;/a>&lt;/li>");
+                  }
+                </script>
+                <li class="sh-fb">
+                  <a expr:href="&quot;https://www.facebook.com/sharer.php?u=&quot; + data:post.url + &quot;&amp;title=&quot;+ data:post.title" onclick="window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;" rel="nofollow" target="_blank"><i/> </a>
+                </li><li class="sh-tw">
+                  <a expr:href="&quot;https://twitter.com/share?url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title" onclick="window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;" rel="nofollow" target="_blank"><i/></a>
+                </li><li class="sh-gp">
+                  <a expr:href="&quot;https://plus.google.com/share?url=&quot; + data:post.url + &quot;&amp;title=&quot; + data:post.title" onclick="window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;" rel="nofollow" target="_blank"><i/></a>
+                </li><li class="sh-ps">
+                  <a expr:href="&quot;https://pinterest.com/pin/create/button/?url=&quot; + data:post.url + &quot;&amp;media=&quot; + data:post.thumbnailUrl + &quot;&amp;description=&quot; + data:post.snippet" onclick="window.open(this.href, &apos;windowName&apos;, &apos;width=550, height=600, left=24, top=24, scrollbars, resizable&apos;); return false;" rel="nofollow"><i/></a>
+                </li>
+              </ul>
+            </div>
+            <section id="related"/>
+          </b:loop>
+          <ul class="pager">
+            <b:if cond="data:newerPageUrl">
+            <li class="previous">
+              <a expr:href="data:newerPageUrl"><b>&amp;lsaquo;</b> Post Baru</a>
+            </li>
+            </b:if>
+            <b:if cond="data:olderPageUrl">
+            <li class="next">
+              <a expr:href="data:olderPageUrl">Post Lama <b>&amp;rsaquo;</b></a>
+            </li>
+            </b:if>
+          </ul>
+        </b:if>
+
+        <b:if cond="data:view.isPage">
+          <b:loop values="data:posts" var="post"><data:post.body/></b:loop>
+        </b:if>
+
+        <b:if cond="data:view.isMultipleItems">
+          <b:loop values="data:posts" var="post">
+            <div class="post-preview">
+              <a expr:href="data:post.url">
+                <h2 class="post-title"><data:post.title/></h2>
+                <h3 class="post-subtitle"><data:post.body/></h3>
+              </a>
+              <p class="post-meta text-capitalize">
+                <time expr:datetime="data:post.date.iso8601">
+                  <b:eval expr="data:post.date format &quot;EEEE, dd MMMM YYYY&quot;"/>
+                </time>
+                &amp;nbsp;&amp;mdash;
+                <b:if cond="data:post.labels">
+                  <b:loop index="i" values="data:post.labels" var="label">
+                    <a b:whitespace="remove" class="post-label" expr:href="params(data:label.url, { max-results: 4 })"><data:label.name/></a><b:if cond="data:i != (data:post.labels.size - 1)">,</b:if>
+                  </b:loop>
+                <b:else/>
+                  Unlabelled
+                </b:if>
+              </p>
+            </div>
+            <hr/>
+          </b:loop>
+          <ul class="pager">
+            <b:if cond="data:newerPageUrl">
+            <li class="previous">
+              <a expr:href="data:newerPageUrl"><b>&amp;lsaquo;</b> Post Baru</a>
+            </li>
+            </b:if>
+            <b:if cond="data:olderPageUrl">
+            <li class="next">
+              <a expr:href="data:olderPageUrl">Post Lama <b>&amp;rsaquo;</b></a>
+            </li>
+            </b:if>
+          </ul>
+        </b:if>
+
+        <b:loop values="data:posts" var="post">
+          <b:if cond="data:view.isSingleItem and data:post.allowComments">
+            <hr/>
+            <section id="disqus_thread" class="comments"/>
+            <script type="text/javascript" src="https://octopress.disqus.com/embed.js" defer="defer"/>
+          </b:if>
+        </b:loop>
+      </div>
+    </div>
+  </main>
+  <hr/>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <div class="text-center text-muted">&amp;copy; <data:blog.title/> <noscript>2016</noscript><span id="current-year"/></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <b:if cond="data:view.isPost">
+    <script type="text/javascript">
+      /*! Related Post by github.com/tovic */
+      var labelArray = [<b:loop values="data:posts" var="post"><b:if cond="data:post.labels"><b:loop values="data:post.labels" var="label">"<data:label.name/>"<b:if cond="data:label.isLast != &quot;true&quot;">, </b:if></b:loop></b:if></b:loop>];
+      /*<![CDATA[*/
+      (function(a, b, c) {
+        var hash = (new Date()).getTime();
+        // Default configuration data
+        var def = {
+          homePage: "",
+          containerId: "related",
+          widgetTitle: "Artikel Terkait",
+          titleLevel: "h2",
+          numPosts: 5,
+          callBack: function() {}
+        };
+        // Remove trailing slash and `?m=1` or `?m=0` query string in the base URL if any
+        def.homePage = def.homePage.replace(/\/?\?m=\d+(\&|$)|\/+$/, "");
+        // Dynamic JavaScript loader (using `<script>` tag)
+        var inject = function(url) {
+          var s = b.createElement("script");
+          s.type = "text/javascript";
+          s.src = url;
+          c.appendChild(s);
+        },
+        // Generate random number from the range of `min` to `max`
+        ri = function(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        },
+        // Function to randomize array(s)
+        shuffle = function(arr) {
+          var i = arr.length, j, temp;
+          if (i === 0) return false;
+          while (--i) {
+            j = Math.floor(Math.random() * (i + 1));
+            temp = arr[i];
+            arr[i] = arr[j]; 
+            arr[j] = temp;
+          }
+          return arr;
+        },
+        // Check if the base variable for the tag/label list does not exist or empty
+        la = (typeof labelArray === "object" && labelArray.length) ? "/-/" + shuffle(labelArray)[0] : "",
+        // A "random related index" function
+        // Generate random `start-index` value by loading an empty JSON feed entry
+        // to get only the `json.feed.openSearch$totalResults.$t` data to fill
+        // the `max` parameter of the `ri()` function above
+        do_related_post_start = function(json) {
+          var to = json.feed.openSearch$totalResults.$t - def.numPosts,
+            si = ri(1, (to > 0 ? to : 1)); // Get random `start-index` with the `ri()` function
+          // Loading the original related post data ...
+          inject(def.homePage + "/feeds/posts/summary" + la + "?alt=json-in-script&orderby=updated&start-index=" + si + "&max-results=" + def.numPosts + "&callback=do_related_post_" + hash);
+        },
+        // A "show related post" function
+        do_related_post = function(json) {
+          var container = b.getElementById(def.containerId),
+            entry = shuffle(json.feed.entry),
+            item = "<" + def.titleLevel + ">" + def.widgetTitle + ":</" + def.titleLevel + "><ul>",
+            clear = "<i style=\"display:block;clear:both;\"></i>",
+            link, title;
+          if (!container) return;
+          var entryLength = entry.length;
+          for (var i = 0; i < def.numPosts; i++) {
+            title = entry[i].title.$t;
+            for (var j = 0, jen = entry[i].link.length; j < jen; j++) {
+              if (entry[i].link[j].rel == "alternate") {
+                link = entry[i].link[j].href;
+                break;
+              }
+            }
+            item += "<li><a href=\"" + link + "\">" + title + "</a></li>";
+          } container.innerHTML = item += "</ul>" + clear;
+          def.callBack(json);
+        };
+        a["do_related_post_" + hash] = do_related_post;
+        a["do_related_post_start_" + hash] = do_related_post_start;
+        // Generate random `start-index` data before loading the original related post data ...
+        inject(def.homePage + "/feeds/posts/summary?alt=json-in-script&orderby=updated&max-results=0&callback=do_related_post_start_" + hash);
+      })(window, document, document.getElementsByTagName("head")[0]);
+      /*]]>*/
+    </script>
+  </b:if>
+  <script type="text/javascript">
+    var imgDefer = document.getElementsByTagName("img");
+    for (var i = 0; i &lt; imgDefer.length; i++) {
+      if (imgDefer[i].getAttribute("data-src")) {
+        imgDefer[i].setAttribute("src", imgDefer[i].getAttribute("data-src"));
+      }
+    }
+    document.getElementById("current-year").appendChild(document.createTextNode(new Date().getFullYear()));
+  </script>
+  <script type="text/javascript" src="https://cleanblogfor.github.io/src/native.js"/>
+&lt;/body>
+&lt;!-- </b:includable></b:widget></b:section><head/><body/> --><b:if cond="data:blog.url == &quot;/p/p.html&quot;"><b:skin/><b:section id="forbidden"/></b:if>
+<b:defaultmarkups>
+  <b:defaultmarkup type="Common">
+    <b:includable id="MetaTags">
+      <b:if cond="data:view.isHomepage">
+        <title><data:blog.title/> &#8211; <data:description/></title>
+        <meta name="twitter:title" expr:content="data:blog.title + &quot; &#8211; &quot; + data:description"/>
+        <meta property="og:title" expr:content="data:blog.title + &quot; &#8211; &quot; + data:description"/>
+        <b:if cond="data:blog.metaDescription">
+          <meta name="description" expr:content="data:blog.metaDescription"/>
+          <meta name="twitter:description" expr:content="data:blog.metaDescription"/>
+          <meta property="og:description" expr:content="data:blog.metaDescription"/>
+          <b:else/>
+          <meta name="description" expr:content="data:description"/>
+          <meta name="twitter:description" expr:content="data:description"/>
+          <meta property="og:description" expr:content="data:description"/>
+        </b:if>
+        <link rel="image_src" href="https://source.unsplash.com/512x512"/>
+        <meta property="twitter:image" content="https://source.unsplash.com/512x512"/>
+        <meta property="og:image" content="https://source.unsplash.com/512x512"/>
+      </b:if>
+      <b:if cond="data:view.search and !data:view.search.label and !data:view.search.query">
+        <title><data:blog.title/> &#8211; <data:description/></title>
+        <meta name="twitter:title" expr:content="data:blog.title + &quot; &#8211; &quot; + data:description"/>
+        <meta property="og:title" expr:content="data:blog.title + &quot; &#8211; &quot; + data:description"/>
+        <b:if cond="data:blog.metaDescription">
+          <meta name="description" expr:content="data:blog.metaDescription"/>
+          <meta name="twitter:description" expr:content="data:blog.metaDescription"/>
+          <meta property="og:description" expr:content="data:blog.metaDescription"/>
+          <b:else/>
+          <meta name="description" expr:content="data:description"/>
+          <meta name="twitter:description" expr:content="data:description"/>
+          <meta property="og:description" expr:content="data:description"/>
+        </b:if>
+        <link rel="image_src" href="https://source.unsplash.com/512x512"/>
+        <meta property="twitter:image" content="https://source.unsplash.com/512x512"/>
+        <meta property="og:image" content="https://source.unsplash.com/512x512"/>
+      </b:if>
+      <b:if cond="data:view.isPost">
+        <title><data:blog.pageName/> &#8211; <data:blog.title/></title>
+        <meta name="twitter:title" expr:content="data:blog.pageName + &quot; &#8211; &quot; + data:blog.title"/>
+        <meta property="og:title" expr:content="data:blog.pageName + &quot; &#8211; &quot; + data:blog.title"/>
+        <b:if cond="data:blog.metaDescription">
+          <meta name="description" expr:content="data:blog.metaDescription"/>
+          <meta name="twitter:description" expr:content="data:blog.metaDescription"/>
+          <meta property="og:description" expr:content="data:blog.metaDescription"/>
+          <b:else/>
+          <meta name="description" expr:content="data:post.snippet"/>
+          <meta name="twitter:description" expr:content="data:post.snippet"/>
+          <meta property="og:description" expr:content="data:post.snippet"/>
+        </b:if>
+        <b:if cond="data:post.featuredImage">
+          <b:if cond="data:post.featuredImage.isYoutube">
+            <link rel="image_src" expr:href="resizeImage(data:post.featuredImage.isYoutube, 1600)"/>
+            <link property="twitter:image" expr:href="resizeImage(data:post.featuredImage.isYoutube, 1600)"/>
+            <link property="og:image" expr:href="resizeImage(data:post.featuredImage.isYoutube, 1600)"/>
+          <b:else/>
+            <link rel="image_src" expr:href="resizeImage(data:post.featuredImage, 1600)"/>
+            <link property="twitter:image" expr:href="resizeImage(data:post.featuredImage, 1600)"/>
+            <link property="og:image" expr:href="resizeImage(data:post.featuredImage, 1600)"/>
+          </b:if>
+        <b:else/>
+          <b:if cond="data:defaultNoImage">
+            <link rel="image_src" href="https://source.unsplash.com/512x512"/>
+            <link property="twitter:image" href="https://source.unsplash.com/512x512"/>
+            <link property="og:image" href="https://source.unsplash.com/512x512"/>
+          </b:if>
+        </b:if>
+      </b:if>
+      <b:if cond="data:view.isPage">
+        <title><data:blog.pageName/> &#8211; <data:blog.title/></title>
+        <meta name="twitter:title" expr:content="data:blog.pageName + &quot; &#8211; &quot; + data:blog.title"/>
+        <meta property="og:title" expr:content="data:blog.pageName + &quot; &#8211; &quot; + data:blog.title"/>
+        <b:if cond="data:blog.metaDescription">
+          <meta name="description" expr:content="data:blog.metaDescription"/>
+          <meta name="twitter:description" expr:content="data:blog.metaDescription"/>
+          <meta property="og:description" expr:content="data:blog.metaDescription"/>
+          <b:else/>
+          <meta name="description" expr:content="data:post.snippet"/>
+          <meta name="twitter:description" expr:content="data:post.snippet"/>
+          <meta property="og:description" expr:content="data:post.snippet"/>
+        </b:if>
+        <b:if cond="data:post.featuredImage">
+          <b:if cond="data:post.featuredImage.isYoutube">
+            <link rel="image_src" expr:href="resizeImage(data:post.featuredImage.isYoutube, 1600)"/>
+            <link property="twitter:image" expr:href="resizeImage(data:post.featuredImage.isYoutube, 1600)"/>
+            <link property="og:image" expr:href="resizeImage(data:post.featuredImage.isYoutube, 1600)"/>
+          <b:else/>
+            <link rel="image_src" expr:href="resizeImage(data:post.featuredImage, 1600)"/>
+            <link property="twitter:image" expr:href="resizeImage(data:post.featuredImage, 1600)"/>
+            <link property="og:image" expr:href="resizeImage(data:post.featuredImage, 1600)"/>
+          </b:if>
+        <b:else/>
+          <b:if cond="data:defaultNoImage">
+            <link rel="image_src" href="https://source.unsplash.com/512x512"/>
+            <link property="twitter:image" href="https://source.unsplash.com/512x512"/>
+            <link property="og:image" href="https://source.unsplash.com/512x512"/>
+          </b:if>
+        </b:if>
+      </b:if>
+      <b:if cond="data:view.search.label">
+        <title>Label: <data:blog.pageName/> &#8211; <data:blog.title/></title>
+        <meta name="twitter:title" expr:content="&quot;Label: &quot; + data:blog.pageName + &quot; &#8211; &quot; + data:blog.title"/>
+        <meta property="og:title" expr:content="&quot;Label: &quot; + data:blog.pageName + &quot; &#8211; &quot; + data:blog.title"/>
+        <b:if cond="data:blog.metaDescription">
+          <meta name="description" expr:content="data:blog.metaDescription"/>
+          <meta name="twitter:description" expr:content="data:blog.metaDescription"/>
+          <meta property="og:description" expr:content="data:blog.metaDescription"/>
+          <b:else/>
+          <meta name="description" expr:content="data:description"/>
+          <meta name="twitter:description" expr:content="data:description"/>
+          <meta property="og:description" expr:content="data:description"/>
+        </b:if>
+        <link rel="image_src" href="&quot;https://placehold.it/512/555/eee?text=Label:+&quot; + data:blog.pageName"/>
+        <meta property="twitter:image" content="&quot;https://placehold.it/512/555/eee?text=Label:+&quot; + data:blog.pageName"/>
+        <meta property="og:image" content="&quot;https://placehold.it/512/555/eee?text=Label:+&quot; + data:blog.pageName"/>
+      </b:if>
+      <b:if cond="data:view.search.query">
+        <title>Hasil pencarian &#8220;<data:blog.searchQuery/>&#8221; &#8211; <data:blog.title/></title>
+        <meta name="twitter:title" expr:content="&quot;Hasil pencarian &#8220;&quot; + data:blog.searchQuery + &quot;&#8221; &#8211; &quot; + data:blog.title"/>
+        <meta property="og:title" expr:content="&quot;Hasil pencarian &#8220;&quot; + data:blog.searchQuery + &quot;&#8221; &#8211; &quot; + data:blog.title"/>
+        <b:if cond="data:blog.metaDescription">
+          <meta name="description" expr:content="data:blog.metaDescription"/>
+          <meta name="twitter:description" expr:content="data:blog.metaDescription"/>
+          <meta property="og:description" expr:content="data:blog.metaDescription"/>
+          <b:else/>
+          <meta name="description" expr:content="data:description"/>
+          <meta name="twitter:description" expr:content="data:description"/>
+          <meta property="og:description" expr:content="data:description"/>
+        </b:if>
+        <link rel="image_src" href="https://placehold.it/512/555/eee?text=Hasil+Pencarian"/>
+        <meta property="twitter:image" content="https://placehold.it/512/555/eee?text=Hasil+Pencarian"/>
+        <meta property="og:image" content="https://placehold.it/512/555/eee?text=Hasil+Pencarian"/>
+      </b:if>
+      <b:if cond="data:view.isArchive">
+        <title>Post <data:blog.pageName/> &#8211; <data:blog.title/></title>
+        <meta name="twitter:title" expr:content="&quot;Post &quot; + data:blog.pageName + &quot; &#8211; &quot; + data:blog.title"/>
+        <meta property="og:title" expr:content="&quot;Post &quot; + data:blog.pageName + &quot; &#8211; &quot; + data:blog.title"/>
+        <b:if cond="data:blog.metaDescription">
+          <meta name="description" expr:content="data:blog.metaDescription"/>
+          <meta name="twitter:description" expr:content="data:blog.metaDescription"/>
+          <meta property="og:description" expr:content="data:blog.metaDescription"/>
+          <b:else/>
+          <meta name="description" expr:content="data:description"/>
+          <meta name="twitter:description" expr:content="data:description"/>
+          <meta property="og:description" expr:content="data:description"/>
+        </b:if>
+        <link rel="image_src" href="&quot;https://placehold.it/512/555/eee?text=Post+&quot; + data:blog.pageName"/>
+        <meta property="twitter:image" content="&quot;https://placehold.it/512/555/eee?text=Post+&quot; + data:blog.pageName"/>
+        <meta property="og:image" content="&quot;https://placehold.it/512/555/eee?text=Post+&quot; + data:blog.pageName"/>
+      </b:if>
+      <b:if cond="data:view.isError">
+        <title>404! <data:blog.pageName/> &#8211; <data:blog.title/></title>
+        <meta name="twitter:title" expr:content="&quot;404! &#8211; &quot; + data:blog.title"/>
+        <meta property="og:title" expr:content="&quot;404! &#8211; &quot; + data:blog.title"/>
+        <meta name="description" content="404!"/>
+        <meta name="twitter:description" content="404!"/>
+        <meta property="og:description" content="404!"/>
+        <link rel="image_src" href="https://placehold.it/512/333/eee?text=404!"/>
+        <meta property="twitter:image" content="https://placehold.it/512/555/eee?text=404!"/>
+        <meta property="og:image" content="https://placehold.it/512/555/eee?text=404!"/>
+      </b:if>
+      <b:if cond="data:blog.adultContent">
+        <meta name="rating" content="adult"/>
+        <b:else/>
+        <meta name="rating" content="general"/>
+      </b:if>
+      <b:if cond="data:view.isHomepage">
+        <meta content="summary_large_image" name="twitter:card"/>
+        <b:else/>
+        <meta content="summary" name="twitter:card"/>
+      </b:if>
+      <b:if cond="data:view.type == &quot;item&quot;">
+        <meta property="og:type" content="article"/>
+        <b:else/>
+        <meta property="og:type" content="website"/>
+      </b:if>
+      <meta name="twitter:site" expr:content="data:blog.title"/>
+      <meta property="og:site_name" expr:content="data:blog.title"/>
+      <link rel="canonical" expr:href="data:view.url.canonical"/>
+      <meta name="twitter:url" expr:content="data:view.url.canonical"/>
+      <meta property="og:url" expr:content="data:view.url.canonical"/>
+      <link rel="alternate" expr:href="data:blog.url" hreflang="x-default"/>
+      <link rel="icon" expr:href="data:blog.blogspotFaviconUrl" type="image/x-icon"/>
+      <data:blog.meTag/>
+      <b:if cond="data:blog.googleProfileUrl">
+        <link rel="publisher" expr:href="data:blog.googleProfileUrl"/>
+      </b:if>
+      <data:blog.feedLinks/>
+      <data:blog.openIdOpTag/>
+    </b:includable>
+  </b:defaultmarkup>
+</b:defaultmarkups>
+</html>
